@@ -47,10 +47,14 @@ if __name__ == "__main__":
     X_train = pd.read_csv('data/X_train.csv', index_col='id')
     y_train = pd.read_csv('data/y_train.csv', index_col='id')
 
+    # As we cannot drop any rows from y_train, we need to drop the corresponding rows from X_train before using pipelines
+    outlier_detector = p_config['outlier_detector'](**p_config['outlier_detector_hyperparams'])
+    X_train, y_train = outlier_detector.drop(X_train, y_train)
+
 
     # # Create the Preprocessing + Model pipeline
     # Add preprocessing steps to the pipeline
-    pipeline_steps = [(step, p_config[f'{step}'](**p_config[f'{step}_hyperparams'])) for step in p_config['order']]
+    pipeline_steps = [(step, p_config[f'{step}'](**p_config[f'{step}_hyperparams']))  for step in p_config['order'] if step != 'outlier_detector']
 
     # Add model to the pipeline
     model = m_config['model'](**m_config['model_hyperparams'])
