@@ -37,8 +37,14 @@ model_configs = {
     "xgboost": {
         # Xgboost model.
         "model": XGBRegressor,
-        "model_hyperparams": {"max_depth": 6, "eta": 0.3},
-        "param_grid": {},
+        "model_hyperparams": {},#"max_depth": 6, "eta": 0.3},
+        "param_grid": {
+            "model__max_depth": [3, 4, 5, 6, 8],
+            "model__min_child_weight": [ 1, 3, 5, 7],
+            "model__learning_rate": [0.05, 0.10, 0.15],
+            "model__gamma":[ 0.0, 0.1, 0.2],
+            "model__colsample_bytree":[ 0.3, 0.4],
+        },
     },
     "adaboost": {
         # Adaboost model.
