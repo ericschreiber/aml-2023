@@ -50,7 +50,7 @@ preprocessing_configs = {
         'selector': SelectKBest,
         'selector_hyperparams': {
             'score_func': f_regression,
-            'k': 100,
+            'k': 175,
         },
 
 

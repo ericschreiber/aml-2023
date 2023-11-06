@@ -1,1 +1,64 @@
-{"mean_fit_time": [4.014217853546143], "std_fit_time": [0.055696940321015166], "mean_score_time": [0.025525426864624022], "std_score_time": [0.00015675354171005809], "params": [{}], "split0_test_score": [0.5332127228159862], "split1_test_score": [0.5369595714441546], "split2_test_score": [0.5854483484413269], "split3_test_score": [0.5670199813351375], "split4_test_score": [0.5416618660134764], "mean_test_score": [0.5528604980100164], "std_test_score": [0.02013327026635192], "rank_test_score": [1], "split0_train_score": [0.6973419500390914], "split1_train_score": [0.7103191337550989], "split2_train_score": [0.7066116566714131], "split3_train_score": [0.6989370423611665], "split4_train_score": [0.7041437367377346], "mean_train_score": [0.7034707039129009], "std_train_score": [0.004802817086448899], "best_score": 0.5528604980100164, "best_params": {}}
+{
+    "mean_fit_time": [
+        14.336731767654419
+    ],
+    "std_fit_time": [
+        0.09594088359750878
+    ],
+    "mean_score_time": [
+        0.15176796913146973
+    ],
+    "std_score_time": [
+        0.0012835471854501443
+    ],
+    "params": [
+        {}
+    ],
+    "split0_test_score": [
+        0.5251053877177257
+    ],
+    "split1_test_score": [
+        0.5555106994375925
+    ],
+    "split2_test_score": [
+        0.5992845930541049
+    ],
+    "split3_test_score": [
+        0.5874401243557688
+    ],
+    "split4_test_score": [
+        0.5534901146023135
+    ],
+    "mean_test_score": [
+        0.564166183833501
+    ],
+    "std_test_score": [
+        0.02641825365604222
+    ],
+    "rank_test_score": [
+        1
+    ],
+    "split0_train_score": [
+        0.7144250904954978
+    ],
+    "split1_train_score": [
+        0.724295496633988
+    ],
+    "split2_train_score": [
+        0.7315001894104157
+    ],
+    "split3_train_score": [
+        0.7201191698214555
+    ],
+    "split4_train_score": [
+        0.7256623733901156
+    ],
+    "mean_train_score": [
+        0.7232004639502946
+    ],
+    "std_train_score": [
+        0.00570345667400374
+    ],
+    "best_score": 0.564166183833501,
+    "best_params": {}
+}

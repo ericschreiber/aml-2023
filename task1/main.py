@@ -95,9 +95,10 @@ if __name__ == "__main__":
         'cv_folds': args.cv_folds
     }
     with open(f'results/{experiment_name}/config.json', 'w') as f:
-        json.dump(config, f, default=lambda f: f.__name__)
+        # if f.__name__ exists, use that, otherwise use f
+        json.dump(config, f, default=lambda f: f.__name__ if hasattr(f, '__name__') else str(f))
     with open(f'results/{experiment_name}/results.json', 'w') as f:
-        json.dump(grid_search.cv_results_, f, default=lambda f: f.__name__)
+        json.dump(grid_search.cv_results_, f, default=lambda f: f.__name__ if hasattr(f, '__name__') else str(f))
 
 
     # # Generate test set prediction
