@@ -6,6 +6,9 @@ import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+from sklearn.experimental import enable_halving_search_cv  # noqa
+from sklearn.model_selection import HalvingGridSearchCV
+from sklearn.model_selection import HalvingRandomSearchCV
 from sklearn.metrics import r2_score, make_scorer
 
 from configs.model_configs import model_configs
@@ -69,6 +72,9 @@ if __name__ == "__main__":
     grid_search = GridSearchCV(pipeline, param_grid, n_jobs=args.n_jobs, 
                                 scoring=make_scorer(r2_score), return_train_score=True,
                                 verbose=3, cv=args.cv_folds)
+    # grid_search = HalvingGridSearchCV(pipeline, param_grid, n_jobs=args.n_jobs, factor=2,
+    #                                     scoring=make_scorer(r2_score), return_train_score=True,
+    #                                     verbose=3, cv=args.cv_folds, min_resources=50)
     grid_search.fit(X_train, np.ravel(y_train))
 
     # # Process the results results
