@@ -163,3 +163,5 @@ cython_debug/
 
 task1/catboost_info
 task2/biobss
+task2/data/X_test.csv
+task2/data/X_train.csv
