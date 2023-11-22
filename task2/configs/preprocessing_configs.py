@@ -10,6 +10,9 @@ from feature_extractors import (
     EricsBiobss,
     EricsNeurokit,
     EricsCombined,
+    # EricsManualExtraction,
+    EricsSpectral,
+    EricsHRV,
 )
 
 preprocessing_configs = {
@@ -62,6 +65,60 @@ preprocessing_configs = {
         "selector_hyperparams": {
             "score_func": f_classif,
             "k": 75,
+        },
+        "param_grid": {},
+    },
+    # "ericManual": {
+    #     "order": ["feature_extractor", "imputer", "scaler", "selector"],
+    #     "feature_extractor": EricsManualExtraction,
+    #     "feature_extractor_hyperparams": {},
+    #     "imputer": SimpleImputer,
+    #     "imputer_hyperparams": {
+    #         "strategy": "median",
+    #         "missing_values": np.nan,
+    #     },
+    #     "scaler": StandardScaler,
+    #     "scaler_hyperparams": {},
+    #     "selector": SelectKBest,
+    #     "selector_hyperparams": {
+    #         "score_func": f_classif,
+    #         "k": 75,
+    #     },
+    #     "param_grid": {},
+    # },
+    "ericSpectral": {
+        "order": ["feature_extractor", "imputer", "scaler", "selector"],
+        "feature_extractor": EricsSpectral,
+        "feature_extractor_hyperparams": {},
+        "imputer": SimpleImputer,
+        "imputer_hyperparams": {
+            "strategy": "median",
+            "missing_values": np.nan,
+        },
+        "scaler": StandardScaler,
+        "scaler_hyperparams": {},
+        "selector": SelectKBest,
+        "selector_hyperparams": {
+            "score_func": f_classif,
+            "k": 75,
+        },
+        "param_grid": {},
+    },
+    "ericHRV": {
+        "order": ["feature_extractor", "imputer", "scaler", "selector"],
+        "feature_extractor": EricsHRV,
+        "feature_extractor_hyperparams": {},
+        "imputer": SimpleImputer,
+        "imputer_hyperparams": {
+            "strategy": "median",
+            "missing_values": np.nan,
+        },
+        "scaler": StandardScaler,
+        "scaler_hyperparams": {},
+        "selector": SelectKBest,
+        "selector_hyperparams": {
+            "score_func": f_classif,
+            "k": 30,
         },
         "param_grid": {},
     },
