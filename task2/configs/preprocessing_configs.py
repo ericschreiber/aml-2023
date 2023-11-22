@@ -1,7 +1,7 @@
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import IsolationForest
-from sklearn.feature_selection import SelectKBest, f_classif
+from sklearn.feature_selection import SelectKBest, f_classif, VarianceThreshold
 
 import numpy as np
 
@@ -136,7 +136,35 @@ preprocessing_configs = {
         "selector": SelectKBest,
         "selector_hyperparams": {
             "score_func": f_classif,
-            "k": 75,
+            "k": 200,  # out of 286
+        },
+        "param_grid": {},
+    },
+    "ericCombinedVarianceThrs": {
+        "order": [
+            "feature_extractor",
+            "imputer",
+            "scaler",
+            "variance_thresholder",
+            "selector",
+        ],
+        "feature_extractor": EricsCombined,
+        "feature_extractor_hyperparams": {},
+        "imputer": SimpleImputer,
+        "imputer_hyperparams": {
+            "strategy": "median",
+            "missing_values": np.nan,
+        },
+        "scaler": StandardScaler,
+        "scaler_hyperparams": {},
+        "variance_thresholder": VarianceThreshold,
+        "variance_thresholder_hyperparams": {
+            "threshold": 0.01,  # default is 0.0
+        },
+        "selector": SelectKBest,
+        "selector_hyperparams": {
+            "score_func": f_classif,
+            "k": "all",  # out of 286
         },
         "param_grid": {},
     },

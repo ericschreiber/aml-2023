@@ -66,9 +66,9 @@ if __name__ == "__main__":
     m_config = model_configs[args.model_config]
 
     # # Load the data
-    X_train = pd.read_csv("data/X_train.csv", index_col="id")
-    y_train = pd.read_csv("data/y_train.csv", index_col="id")
-    X_test = pd.read_csv("data/X_test.csv", index_col="id")
+    # X_train = pd.read_csv("data/X_train.csv", index_col="id")
+    # y_train = pd.read_csv("data/y_train.csv", index_col="id")
+    # X_test = pd.read_csv("data/X_test.csv", index_col="id")
 
     # As we cannot drop any rows from y_train, we need to drop the corresponding rows from X_train before using pipelines
     # outlier_detector = p_config['outlier_detector'](**p_config['outlier_detector_hyperparams'])
@@ -78,9 +78,7 @@ if __name__ == "__main__":
     feature_extractor = p_config["feature_extractor"](
         **p_config["feature_extractor_hyperparams"]
     )
-    X_train, y_train, X_test = feature_extractor.transform_inputs(
-        X_train, y_train, X_test
-    )
+    X_train, y_train, X_test = feature_extractor.load_data()
 
     # Check if there are nan or inf values in the data
     # if np.any(np.isnan(X_train)) or np.any(np.isnan(y_train)):
