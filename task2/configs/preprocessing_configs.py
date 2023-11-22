@@ -5,7 +5,12 @@ from sklearn.feature_selection import SelectKBest, f_classif
 
 import numpy as np
 
-from feature_extractors import BaseFeatureExtractor, EricsBiobss
+from feature_extractors import (
+    BaseFeatureExtractor,
+    EricsBiobss,
+    EricsNeurokit,
+    EricsCombined,
+)
 
 preprocessing_configs = {
     "baseline": {
@@ -27,6 +32,42 @@ preprocessing_configs = {
     "ericBioss": {
         "order": ["feature_extractor", "imputer", "scaler", "selector"],
         "feature_extractor": EricsBiobss,
+        "feature_extractor_hyperparams": {},
+        "imputer": SimpleImputer,
+        "imputer_hyperparams": {
+            "strategy": "median",
+            "missing_values": np.nan,
+        },
+        "scaler": StandardScaler,
+        "scaler_hyperparams": {},
+        "selector": SelectKBest,
+        "selector_hyperparams": {
+            "score_func": f_classif,
+            "k": 75,
+        },
+        "param_grid": {},
+    },
+    "ericNeurokit": {
+        "order": ["feature_extractor", "imputer", "scaler", "selector"],
+        "feature_extractor": EricsNeurokit,
+        "feature_extractor_hyperparams": {},
+        "imputer": SimpleImputer,
+        "imputer_hyperparams": {
+            "strategy": "median",
+            "missing_values": np.nan,
+        },
+        "scaler": StandardScaler,
+        "scaler_hyperparams": {},
+        "selector": SelectKBest,
+        "selector_hyperparams": {
+            "score_func": f_classif,
+            "k": 75,
+        },
+        "param_grid": {},
+    },
+    "ericCombined": {
+        "order": ["feature_extractor", "imputer", "scaler", "selector"],
+        "feature_extractor": EricsCombined,
         "feature_extractor_hyperparams": {},
         "imputer": SimpleImputer,
         "imputer_hyperparams": {
