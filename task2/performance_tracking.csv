@@ -1,5 +1,5 @@
 Preprocessing, Model, CV score, (optinal) Public score, (optional) parameters
 ericCombinedVarianceThrs, baseline, 0.795
 ericCombinedVarianceThrs, histgradientboosting, 0.804
-ericCombinedVarianceThrs, gbc, 
+ericCombinedVarianceThrs, gbc, 0.794
 ericCombinedVarianceThrs, catboost, 0.801
