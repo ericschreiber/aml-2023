@@ -3,3 +3,10 @@ ericCombinedVarianceThrs, baseline, 0.795
 ericCombinedVarianceThrs, histgradientboosting, 0.804
 ericCombinedVarianceThrs, gbc, 0.794
 ericCombinedVarianceThrs, catboost, 0.801
+ericCombinedVarianceThrs, xxgboostgb, 0.805
+ericCombinedVarianceThrs, lightgbm, 0.806
+ericCombinedVarianceThrs, adaboost, 0.664
+ericCombinedVarianceThrs, svm, 0.755
+ericCombinedVarianceThrs, randforest, 0.781
+ericCombinedVarianceThrs, gaussian_process, 0.279
+ericCombinedVarianceThrs, stacking, 0.809
