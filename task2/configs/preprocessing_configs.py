@@ -1,7 +1,7 @@
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import IsolationForest
-from sklearn.feature_selection import SelectKBest, f_classif, VarianceThreshold
+from sklearn.feature_selection import SelectKBest, f_classif, VarianceThreshold, SelectPercentile
 
 import numpy as np
 
@@ -122,25 +122,25 @@ preprocessing_configs = {
         },
         "param_grid": {},
     },
-    "ericCombined": {
-        "order": ["feature_extractor", "imputer", "scaler", "selector"],
-        "feature_extractor": EricsCombined,
-        "feature_extractor_hyperparams": {},
-        "imputer": SimpleImputer,
-        "imputer_hyperparams": {
-            "strategy": "median",
-            "missing_values": np.nan,
-        },
-        "scaler": StandardScaler,
-        "scaler_hyperparams": {},
-        "selector": SelectKBest,
-        "selector_hyperparams": {
-            "score_func": f_classif,
-            "k": 200,  # out of 286
-        },
-        "param_grid": {},
-    },
-    "ericCombinedVarianceThrs": {
+    # "ericCombined": {
+    #     "order": ["feature_extractor", "imputer", "scaler", "selector"],
+    #     "feature_extractor": EricsCombined,
+    #     "feature_extractor_hyperparams": {},
+    #     "imputer": SimpleImputer,
+    #     "imputer_hyperparams": {
+    #         "strategy": "median",
+    #         "missing_values": np.nan,
+    #     },
+    #     "scaler": StandardScaler,
+    #     "scaler_hyperparams": {},
+    #     "selector": SelectKBest,
+    #     "selector_hyperparams": {
+    #         "score_func": f_classif,
+    #         "k": 200,  # out of 286
+    #     },
+    #     "param_grid": {},
+    # },
+    "ericCombinedVarianceThrsSelectPercentile": {
         "order": [
             "feature_extractor",
             "imputer",
@@ -161,11 +161,12 @@ preprocessing_configs = {
         "variance_thresholder_hyperparams": {
             "threshold": 0.01,  # default is 0.0
         },
-        "selector": SelectKBest,
+        "selector": SelectPercentile,
         "selector_hyperparams": {
             "score_func": f_classif,
-            "k": "all",  # out of 286
+            "percentile": 90, 
         },
         "param_grid": {},
     },
 }
+

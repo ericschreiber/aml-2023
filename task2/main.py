@@ -115,7 +115,7 @@ if __name__ == "__main__":
         cv=args.cv_folds,
     )
     # grid_search = HalvingGridSearchCV(pipeline, param_grid, n_jobs=args.n_jobs, factor=2,
-    #                                     scoring=make_scorer(f1_score), return_train_score=True,
+    #                                     scoring=make_scorer(f1_score, average="weighted"), return_train_score=True,
     #                                     verbose=3, cv=args.cv_folds, min_resources=50)
     grid_search.fit(X_train, np.ravel(y_train))
 
