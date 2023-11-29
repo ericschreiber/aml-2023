@@ -209,3 +209,31 @@ class EricsCombined:
     def load_data(self):
         # remove outliers from X and y (eg. the id's where self.outlier_predictions['outlier'] == 1.0)
         return self.X_train, self.y_train, self.X_test
+
+class ViktorCombined:
+    def __init__(self, n_estimators=100, n_jobs=-1):
+        # Load pre-computed predictions in csv file task1/data/outliers_majority_vote_ocsvm_iforest_knn.csv
+        # and store them in self.outlier_predictions
+        basepath = os.path.realpath(__file__).split("feature_extractors.py")[0]
+        self.X_train = pd.read_csv(
+            os.path.join(basepath, "data/feature_extraction/Viktor_total_feature_train.csv"),
+            index_col="id",
+        )
+        self.X_test = pd.read_csv(
+            os.path.join(basepath, "data/feature_extraction/Viktor_total_feature_test.csv"),
+            index_col="id",
+        )
+        self.y_train = pd.read_csv(
+            os.path.join(basepath, "data/feature_extraction/combined_y_train.csv"),
+            index_col="id",
+        )
+
+    def fit(self, X, y):
+        return self
+
+    def transform(self, X):
+        return X
+
+    def load_data(self):
+        # remove outliers from X and y (eg. the id's where self.outlier_predictions['outlier'] == 1.0)
+        return self.X_train, self.y_train, self.X_test

@@ -13,6 +13,7 @@ from feature_extractors import (
     # EricsManualExtraction,
     EricsSpectral,
     EricsHRV,
+    ViktorCombined,
 )
 
 preprocessing_configs = {
@@ -165,6 +166,35 @@ preprocessing_configs = {
         "selector_hyperparams": {
             "score_func": f_classif,
             "percentile": 90, 
+        },
+        "param_grid": {},
+    },
+
+    "ViktorCombined": {
+        "order": [
+            "feature_extractor",
+            "imputer",
+            "scaler",
+            "variance_thresholder",
+            "selector",
+        ],
+        "feature_extractor": ViktorCombined,
+        "feature_extractor_hyperparams": {},
+        "imputer": SimpleImputer,
+        "imputer_hyperparams": {
+            "strategy": "median",
+            "missing_values": np.nan,
+        },
+        "scaler": StandardScaler,
+        "scaler_hyperparams": {},
+        "variance_thresholder": VarianceThreshold,
+        "variance_thresholder_hyperparams": {
+            "threshold": 0.01,  # default is 0.0
+        },
+        "selector": SelectKBest,
+        "selector_hyperparams": {
+            "score_func": f_classif,
+            "k": 250,
         },
         "param_grid": {},
     },
