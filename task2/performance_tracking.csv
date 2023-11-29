@@ -4,7 +4,7 @@ ericCombinedVarianceThrs, histgradientboosting, 0.809, , "random_state": RANDOM_
 ericCombinedVarianceThrs, gbc, 0.794
 ericCombinedVarianceThrs, catboost, 0.801
 ericCombinedVarianceThrs, xgboostgb, 0.805, , default
-ericCombinedVarianceThrs, lightgbm, 0.806
+ericCombinedVarianceThrs, lightgbm, 0.813, , 'model__learning_rate': 0.15 'model__n_estimators': 1000 'model__num_leaves': 32
 ericCombinedVarianceThrs, adaboost, 0.735, , "n_estimators": 550 "learning_rate": 1 "estimator": DecisionTreeClassifier("max_depth"=4) (try with 3 as 4 is likely a bit overfitting)
 ericCombinedVarianceThrs, svm, 0.755
 ericCombinedVarianceThrs, randforest, 0.790, , "n_estimators": 2000
