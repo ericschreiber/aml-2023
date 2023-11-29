@@ -1,7 +1,12 @@
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import IsolationForest
-from sklearn.feature_selection import SelectKBest, f_classif, VarianceThreshold
+from sklearn.feature_selection import (
+    SelectKBest,
+    f_classif,
+    VarianceThreshold,
+    SelectPercentile,
+)
 
 import numpy as np
 
@@ -140,7 +145,7 @@ preprocessing_configs = {
         },
         "param_grid": {},
     },
-    "ericCombinedVarianceThrs": {
+    "ericCombinedVarianceThrsSelectPercentile": {
         "order": [
             "feature_extractor",
             "imputer",
@@ -161,10 +166,10 @@ preprocessing_configs = {
         "variance_thresholder_hyperparams": {
             "threshold": 0.01,  # default is 0.0
         },
-        "selector": SelectKBest,
+        "selector": SelectPercentile,
         "selector_hyperparams": {
             "score_func": f_classif,
-            "k": "all",  # out of 286
+            "percentile": "90",  # out of 286
         },
         "param_grid": {},
     },
