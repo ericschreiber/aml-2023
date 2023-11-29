@@ -8,5 +8,5 @@ ericCombinedVarianceThrs, lightgbm, 0.813, , 'model__learning_rate': 0.15 'model
 ericCombinedVarianceThrs, adaboost, 0.735, , "n_estimators": 550 "learning_rate": 1 "estimator": DecisionTreeClassifier("max_depth"=4) (try with 3 as 4 is likely a bit overfitting)
 ericCombinedVarianceThrs, svm, 0.755
 ericCombinedVarianceThrs, randforest, 0.790, , "n_estimators": 2000
-ericCombinedVarianceThrs, gaussian_process, 0.279
+ericCombinedVarianceThrs, gaussian_process, 0.739, ,
 ericCombinedVarianceThrs, stacking, 0.809
