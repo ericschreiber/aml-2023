@@ -1,7 +1,12 @@
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import IsolationForest
-from sklearn.feature_selection import SelectKBest, f_classif, VarianceThreshold, SelectPercentile
+from sklearn.feature_selection import (
+    SelectKBest,
+    f_classif,
+    VarianceThreshold,
+    SelectPercentile,
+)
 
 import numpy as np
 
@@ -165,7 +170,7 @@ preprocessing_configs = {
         "selector": SelectPercentile,
         "selector_hyperparams": {
             "score_func": f_classif,
-            "percentile": 90, 
+            "percentile": 90,
         },
         "param_grid": {},
     },
@@ -227,4 +232,3 @@ preprocessing_configs = {
         "param_grid": {},
     },
 }
-
