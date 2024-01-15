@@ -30,7 +30,7 @@ model_configs = {
         "model_hyperparams": {},
         "param_grid": {},
     },
-    "histgradientboosting_1": {
+    "histgradientboosting": {
         "model": HistGradientBoostingClassifier,
         "model_hyperparams": {
             "random_state": RANDOM_SEED,
@@ -57,7 +57,7 @@ model_configs = {
             "learning_rate": 0.1,
             "max_depth": 16,
             "colsample_bytree": 0.4,
-            "gamma": 0.0,  
+            "gamma": 0.0,
             "min_child_weight": 1,
             "alpha": 0.5,
             "max_depth": 16,
@@ -76,20 +76,23 @@ model_configs = {
             "random_state": RANDOM_SEED,
             "num_threads": 64,
             "objective": "multiclass",
-            
         },
         "param_grid": {
             "model__n_estimators": [100, 200, 500, 1000],
             "model__learning_rate": [0.05, 0.1, 0.15, 0.2],
-            "model__num_leaves": [8, 16, 32,],
+            "model__num_leaves": [
+                8,
+                16,
+                32,
+            ],
         },
     },
     "adaboost_grid3": {
         "model": AdaBoostClassifier,
         "model_hyperparams": {
             "n_estimators": 550,
-             "learning_rate": 1 ,
-             "estimator": DecisionTreeClassifier(max_depth=4),
+            "learning_rate": 1,
+            "estimator": DecisionTreeClassifier(max_depth=4),
         },
         "param_grid": {
             # "model__n_estimators": [400, 500, 800],
@@ -104,9 +107,9 @@ model_configs = {
     "gaussian_process_1": {
         "model": GaussianProcessClassifier,
         "model_hyperparams": {
-            "kernel": RationalQuadratic(alpha=1, length_scale=1) ,
-            "random_state": RANDOM_SEED ,
-            "n_restarts_optimizer": 5 ,
+            "kernel": RationalQuadratic(alpha=1, length_scale=1),
+            "random_state": RANDOM_SEED,
+            "n_restarts_optimizer": 5,
             "n_jobs": -1,
         },
         "param_grid": {},
@@ -130,29 +133,52 @@ model_configs = {
         },
         "param_grid": {},
     },
-
     "Viktor_stacking": {
         "model": StackingClassifier,
         "model_hyperparams": {
             "final_estimator": RidgeClassifierCV(),
             "cv": 5,
             "estimators": [
-                ("gbc", GradientBoostingClassifier(learning_rate=0.05, n_estimators=500, max_depth=7, 
-                                 min_samples_split=60, min_samples_leaf=9, subsample=1.0,
-                                 max_features=50, random_state=0)),
-                ("catboost", CatBoostClassifier(depth = 5, iterations = 100, learning_rate=0.1)),
+                (
+                    "gbc",
+                    GradientBoostingClassifier(
+                        learning_rate=0.05,
+                        n_estimators=500,
+                        max_depth=7,
+                        min_samples_split=60,
+                        min_samples_leaf=9,
+                        subsample=1.0,
+                        max_features=50,
+                        random_state=0,
+                    ),
+                ),
+                (
+                    "catboost",
+                    CatBoostClassifier(depth=5, iterations=100, learning_rate=0.1),
+                ),
                 ("xgboost", XGBClassifier()),
                 ("lightgbm", LGBMClassifier()),
-                ("adaboost", AdaBoostClassifier(n_estimators=550, learning_rate = 1, estimator = DecisionTreeClassifier(max_depth=4))),
+                (
+                    "adaboost",
+                    AdaBoostClassifier(
+                        n_estimators=550,
+                        learning_rate=1,
+                        estimator=DecisionTreeClassifier(max_depth=4),
+                    ),
+                ),
                 ("svm", SVC()),
                 ("gaussian_process", GaussianProcessClassifier()),
                 ("rf", RandomForestClassifier(n_estimators=2000)),
-                ("histgradientboosting", HistGradientBoostingClassifier(max_iter = 400, max_leaf_nodes = 32, learning_rate = 0.15)),
+                (
+                    "histgradientboosting",
+                    HistGradientBoostingClassifier(
+                        max_iter=400, max_leaf_nodes=32, learning_rate=0.15
+                    ),
+                ),
             ],
         },
         "param_grid": {},
     },
-    
     "randforest": {
         "model": RandomForestClassifier,
         "model_hyperparams": {

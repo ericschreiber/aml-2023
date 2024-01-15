@@ -146,7 +146,7 @@ preprocessing_configs = {
     #     },
     #     "param_grid": {},
     # },
-    "ericCombinedVarianceThrsSelectPercentile": {
+    "ericCombined2VarianceThrsSelectPercentile": {
         "order": [
             "feature_extractor",
             "imputer",
