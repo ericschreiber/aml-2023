@@ -13,15 +13,12 @@ from lightgbm import LGBMClassifier
 from catboost import CatBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.gaussian_process.kernels import RationalQuadratic
+from sklearn.metrics import f1_score, make_scorer
 
 import numpy as np
 
 RANDOM_SEED = 3141592
 
-# lgbm = LGBMClassifier(n_estimators=2000, learning_rate=0.11, num_leaves=16, random_state=0, num_threads=128)
-# xgboost = XGBClassifier(n_estimators=2000, random_state=0, learning_rate=0.11, max_depth=16, alpha=0.2)
-# gradient = HistGradientBoostingClassifier(random_state=0, learning_rate=0.15, max_iter=400, max_leaf_nodes=31)
-# forest = RandomForestClassifier(n_estimators=2000, random_state=0, n_jobs=-1)
 
 model_configs = {
     "baseline": {
@@ -45,10 +42,18 @@ model_configs = {
         "model_hyperparams": {},
         "param_grid": {},
     },
-    "catboost": {
+    "catboost_grid_5": {
         "model": CatBoostClassifier,
-        "model_hyperparams": {},
-        "param_grid": {},
+        "model_hyperparams": {
+            "random_state": RANDOM_SEED,
+            "learning_rate": 0.1,
+        },
+        "param_grid": {
+            "model__depth": [1, 2, 4],
+            # "model__learning_rate": [0.01, 0.05, 0.1],
+            "model__iterations": [5000, 10000, 40000],
+            # "model__loss_function": ["MultiClass", "MultiClassOneVsAll"],
+        },
     },
     "xgboost_optimised": {
         "model": XGBClassifier,
@@ -69,6 +74,18 @@ model_configs = {
             # "model__max_depth": [8, 16],
             # "model__alpha": [0.0, 0.01, 0.05, ]#0.1, 0.2, 0.3],
         },
+    },
+    "lightgbm": {
+        "model": LGBMClassifier,
+        "model_hyperparams": {
+            "random_state": RANDOM_SEED,
+            "num_threads": 64,
+            "objective": "multiclass",
+            "n_estimators": 1000,
+            "learning_rate": 0.15,
+            "num_leaves": 32,
+        },
+        "param_grid": {},
     },
     "lightgbm_grid": {
         "model": LGBMClassifier,
@@ -114,7 +131,7 @@ model_configs = {
         },
         "param_grid": {},
     },
-    "stacking": {
+    "stacking_no_rf": {
         "model": StackingClassifier,
         "model_hyperparams": {
             # "final_estimator": RidgeClassifierCV(),
@@ -122,13 +139,22 @@ model_configs = {
             "estimators": [
                 ("gbc", GradientBoostingClassifier()),
                 ("catboost", CatBoostClassifier()),
-                ("xgboost", XGBClassifier()),
-                ("lightgbm", LGBMClassifier()),
-                ("adaboost", AdaBoostClassifier()),
-                ("svm", SVC()),
-                ("gaussian_process", GaussianProcessClassifier()),
-                ("rf", RandomForestClassifier()),
-                ("histgradientboosting", HistGradientBoostingClassifier()),
+                ("xgboost", XGBClassifier(depth=5, iterations=5000, learning_rate=0.1)),
+                (
+                    "lightgbm",
+                    LGBMClassifier(
+                        learning_rate=0.15, n_estimators=1000, num_leaves=32
+                    ),
+                ),
+                (
+                    "histgradientboosting",
+                    HistGradientBoostingClassifier(
+                        random_state=RANDOM_SEED,
+                        max_iter=400,
+                        max_leaf_nodes=32,
+                        learning_rate=0.15,
+                    ),
+                ),
             ],
         },
         "param_grid": {},
